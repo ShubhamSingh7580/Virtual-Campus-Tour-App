@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BBAU Virtual Tour</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="images/appicon2.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f0f4f8;
+        padding: 20px;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      header h1 {
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+      #search {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        margin: 0 auto 20px auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        display: block;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+      .place-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        text-align: center;
+      }
+      .place-card:hover {
+        transform: scale(1.03);
+      }
+      .place-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+      }
+      .place-card h3 {
+        padding: 15px;
+        font-size: 1.1rem;
+        color: #333;
+      }
+      .support-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .support-icon img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+      .support-icon:hover img {
+        transform: scale(1.1);
+      }
+
+      @media (max-width: 600px) {
+        header h1 {
+          font-size: 1.5rem;
+        }
+        .place-card img {
+          height: 130px;
+        }
+        #search {
+          max-width: 80%;
+        }
+      }
+      @media (min-width: 900px) {
+        .grid-container {
+          grid-template-columns: repeat(4, 1fr);
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="navbar" id="navMenu">
+        <a href="map.html">University Map</a>
+        <a href="contact.html">ContactUs</a>
+      </div>
+
+      <div class="nav-menu-btn">
+        <i
+          id="Menu"
+          class="bx bx-menu"
+          onclick="myMenuFunction()"
+          title="Menu"
+        ></i>
+        <i id="Cross" class="bx bxs-x-circle" title="Close"></i>
+      </div>
+      <div class="logo-section">
+        <img src="images/bbau-logo.jpg" alt="BBAU Logo" class="college-logo2" />
+      </div>
+
+      <h1>Welcome to BBAU Satellite Campus 360° Tour</h1>
+      <input
+        type="text"
+        id="search"
+        placeholder="Search a place..."
+        onkeyup="filterPlaces()"
+      />
+    </header>
+    <a href="contact.html#contactForm" class="support-icon">
+      <img src="images/customer-support.png" alt="Support Icon" />
+    </a>
+
+    <div class="grid-container" id="places-grid">
+      <div class="place-card" onclick="goToTour('maingateout')">
+        <img src="images/maingateout.jpg" alt="Main Gate (Outside)" />
+        <h3>Main Gate (Outside)</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('bcastairsoutother')">
+        <img src="images/bcastairsoutother.jpg" alt="Auditorium" />
+        <h3>Auditorium</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('wayincludingparking')">
+        <img src="images/parkingside.jpg" alt="Way with Parking" />
+        <h3>Parking Area &amp; way to multiple places</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('frontofbcahall')">
+        <img src="images/frontofbcahall.jpg" alt="BCA Hall" />
+        <h3>BCA Lecture Hall</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('waytobscithall')">
+        <img src="images/waytobscithall.jpg" alt="BScIT Hall" />
+        <h3>BScIT Lecture Hall</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('libraryout')">
+        <img src="images/libraryout.jpg" alt="Pharmacy Hall" />
+        <h3>Pharmacy Lecture Hall</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('boyshostelout')">
+        <img src="images/boyshostelout.jpg" alt="Boys Hostel" />
+        <h3>Boys Hostel</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('frontofgirlshostel')">
+        <img src="images/frontofgirlshostel.jpg" alt="Girls Hostel" />
+        <h3>Girls Hostel</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('frontofdphbuild')">
+        <img src="images/frontofdphbuild.jpg" alt="Pharmacy Building" />
+        <h3>Pharmacy Building</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('messin')">
+        <img src="images/messin.jpg" alt="Mess" />
+        <h3>Mess</h3>
+      </div>
+      <div class="place-card" onclick="goToTour('canteen')">
+        <img src="images/canteen.jpg" alt="Canteen" />
+        <h3>Canteen</h3>
+      </div>
+    </div>
+
+    <script>
+      function filterPlaces() {
+        const input = document.getElementById("search").value.toLowerCase();
+        const cards = document.querySelectorAll(".place-card");
+
+        cards.forEach((card) => {
+          const title = card.querySelector("h3").innerText.toLowerCase();
+          card.style.display = title.includes(input) ? "block" : "none";
+        });
+      }
+
+      function goToTour(sceneId) {
+        window.location.href = `tour.html?scene=${sceneId}`;
+      }
+    </script>
+    <script>
+      function myMenuFunction() {
+        var navMenu = document.getElementById("navMenu");
+        var navMenuBtn = document.querySelector(".nav-menu-btn");
+        var menuBtn = document.getElementById("Menu");
+        var crossBtn = document.getElementById("Cross");
+
+        if (navMenu.className === "navbar") {
+          navMenu.className += " responsive";
+          navMenuBtn.classList.add("active");
+          menuBtn.style.display = "none";
+          crossBtn.style.display = "flex";
+          document.addEventListener("click", closeMenuOnClickOutside);
+        } else {
+          navMenu.className = "navbar";
+          navMenuBtn.classList.remove("active");
+          crossBtn.style.display = "none";
+          menuBtn.style.display = "flex";
+          document.removeEventListener("click", closeMenuOnClickOutside);
+        }
+      }
+      function closeMenuOnClickOutside(event) {
+        var navMenu = document.getElementById("navMenu");
+        var navMenuBtn = document.querySelector(".nav-menu-btn");
+        var menuBtn = document.getElementById("Menu");
+        var crossBtn = document.getElementById("Cross");
+
+        if (
+          !navMenu.contains(event.target) &&
+          !navMenuBtn.contains(event.target)
+        ) {
+          navMenu.className = "navbar";
+          menuBtn.style.display = "flex";
+          crossBtn.style.display = "none";
+          document.removeEventListener("click", closeMenuOnClickOutside);
+        }
+      }
+      document.getElementById("Cross").addEventListener("click", function () {
+        var navMenu = document.getElementById("navMenu");
+        var navMenuBtn = document.querySelector(".nav-menu-btn");
+        var menuBtn = document.getElementById("Menu");
+        var crossBtn = document.getElementById("Cross");
+
+        navMenu.className = "navbar";
+        menuBtn.style.display = "flex";
+        crossBtn.style.display = "none";
+        navMenuBtn.classList.remove("active");
+        document.removeEventListener("click", closeMenuOnClickOutside);
+      });
+    </script>
+  </body>
+</html>

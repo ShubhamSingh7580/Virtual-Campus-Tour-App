@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>BBAU 360° Virtual Tour</title>
+    <link rel="stylesheet" href="pannellum.css" />
+    <link rel="icon" type="image/png" href="images/appicon2.png" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Segoe UI", sans-serif;
+      }
+      #panorama {
+        width: 100%;
+        height: 100vh;
+      }
+      #back-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        color: white;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 30px;
+        transition: background 0.3s ease;
+      }
+      #back-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <button id="back-btn" onclick="goBack()" title="Back to Home">
+      <i class="bx bx-left-arrow-circle"></i>
+    </button>
+
+    <div id="panorama"></div>
+
+    <script src="pannellum.js"></script>
+    <script>
+      function goBack() {
+        window.location.href = "home.html";
+      }
+
+      function getResponsiveImage(name) {
+        const isMobile = window.innerWidth <= 768;
+        return isMobile ? `images/${name}(2).jpg` : `images/${name}.jpg`;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const startScene = params.get("scene") || "maingateout";
+
+      pannellum.viewer("panorama", {
+        default: {
+          firstScene: startScene,
+          sceneFadeDuration: 1000,
+        },
+        scenes: {
+          maingateout: {
+            title: "Main Gate (Outside)",
+            panorama: getResponsiveImage("maingateout"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 0,
+                type: "scene",
+                text: "Go Inside Gate",
+                sceneId: "maingatein",
+              },
+            ],
+          },
+          maingatein: {
+            title: "Main Gate (Inside)",
+            panorama: getResponsiveImage("maingatein"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: -95,
+                type: "scene",
+                text: "Way to Boys Hostel",
+                sceneId: "waytoboyshostel",
+              },
+              {
+                pitch: 0,
+                yaw: 28,
+                type: "scene",
+                text: "Go to Parking Area",
+                sceneId: "wayincludingparking",
+              },
+              {
+                pitch: 0,
+                yaw: -60,
+                type: "scene",
+                text: "Avla Garden",
+                sceneId: "avlaground",
+              },
+              {
+                pitch: 0,
+                yaw: 180,
+                type: "scene",
+                text: "Way Back to outside",
+                sceneId: "maingateout",
+              },
+            ],
+          },
+          waytoboyshostel: {
+            title: "Way to Boys Hostel",
+            panorama: getResponsiveImage("waytoboyshostel"),
+            hotSpots: [
+              {
+                pitch: 2,
+                yaw: -2,
+                type: "scene",
+                text: "Boys Hostel",
+                sceneId: "boyshostelout",
+              },
+              {
+                pitch: 2,
+                yaw: 60,
+                type: "scene",
+                text: "Avla Ground",
+                sceneId: "avlaground",
+              },
+              {
+                pitch: 1,
+                yaw: 180,
+                type: "scene",
+                text: "Back to Gate",
+                sceneId: "maingatein",
+              },
+            ],
+          },
+          boyshostelout: {
+            title: "Boys Hostel (Outside)",
+            panorama: getResponsiveImage("boyshostelout"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 74,
+                type: "scene",
+                text: "Back to Hostel Way",
+                sceneId: "waytoboyshostel",
+              },
+              {
+                pitch: 0,
+                yaw: -90,
+                type: "scene",
+                text: "Other Boy's hostel",
+                sceneId: "boyshostelside",
+              },
+            ],
+          },
+          boyshostelside: {
+            title: "Boys Hostel (Side)",
+            panorama: getResponsiveImage("boyshostelside"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 90,
+                type: "scene",
+                text: "Back to Boy's Hostel",
+                sceneId: "boyshostelout",
+              },
+            ],
+          },
+          avlaground: {
+            title: "Avla Ground View",
+            panorama: getResponsiveImage("avlatreebesideaud"),
+            hotSpots: [
+              {
+                pitch: 3,
+                yaw: -150,
+                type: "scene",
+                text: "Back to Hostel Way",
+                sceneId: "waytoboyshostel",
+              },
+              {
+                pitch: 0,
+                yaw: 48,
+                type: "scene",
+                text: "Way to Auditorium",
+                sceneId: "waytoaud",
+              },
+              {
+                pitch: 2,
+                yaw: 165,
+                type: "scene",
+                text: "Back to Main Gate",
+                sceneId: "maingatein",
+              },
+              {
+                pitch: 2,
+                yaw: 3,
+                type: "scene",
+                text: "Front of BCA Hall",
+                sceneId: "frontofbcahall",
+              },
+            ],
+          },
+          wayincludingparking: {
+            title: "Way to Parking & Main office",
+            panorama: getResponsiveImage("parkingside"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: -10,
+                type: "scene",
+                text: "Go to Main Office",
+                sceneId: "midwaytomainoffice",
+              },
+              {
+                pitch: 0,
+                yaw: -55,
+                type: "scene",
+                text: "To Faculty house & BCA hall & Auditorium",
+                sceneId: "waytofacultyrooms",
+              },
+              {
+                pitch: 0,
+                yaw: 205,
+                type: "scene",
+                text: "Back to Gate",
+                sceneId: "maingatein",
+              },
+            ],
+          },
+          waytofacultyrooms: {
+            title: "Way to Faculty House",
+            panorama: getResponsiveImage("waytofacultyrooms"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: 80,
+                type: "scene",
+                text: "Inside the faculty house",
+                sceneId: "facultyrooms",
+              },
+              {
+                pitch: 1,
+                yaw: -1,
+                type: "scene",
+                text: "Way to Auditorium",
+                sceneId: "waytoaud",
+              },
+              {
+                pitch: 3,
+                yaw: 210,
+                type: "scene",
+                text: "Back to parking side",
+                sceneId: "wayincludingparking",
+              },
+              {
+                pitch: 1,
+                yaw: 164,
+                type: "scene",
+                text: "Back to Main Office",
+                sceneId: "midwaytomainoffice",
+              },
+            ],
+          },
+          facultyrooms: {
+            title: "Faculty House (Inside)",
+            panorama: getResponsiveImage("facultyrooms"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 180,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "waytofacultyrooms",
+              },
+            ],
+          },
+          waytoaud: {
+            title: "Way to Auditorium & BCA hall",
+            panorama: getResponsiveImage("waytoaud"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 0,
+                type: "scene",
+                text: "Front of BCA hall",
+                sceneId: "frontofbcahall",
+              },
+              {
+                pitch: 0,
+                yaw: 180,
+                type: "scene",
+                text: "Way to Faculty House",
+                sceneId: "waytofacultyrooms",
+              },
+            ],
+          },
+          frontofbcahall: {
+            title: "Front of BCA hall",
+            panorama: getResponsiveImage("frontofbcahall"),
+            hotSpots: [
+              {
+                pitch: 9,
+                yaw: 0,
+                type: "scene",
+                text: "Entrance of BCA hall",
+                sceneId: "bcahallin1",
+              },
+              {
+                pitch: 3,
+                yaw: 40,
+                type: "scene",
+                text: "Outside View of Auditorium",
+                sceneId: "bcastairsoutother",
+              },
+              {
+                pitch: 1,
+                yaw: 230,
+                type: "scene",
+                text: "Avla Garden",
+                sceneId: "avlaground",
+              },
+              {
+                pitch: 0,
+                yaw: 200,
+                type: "scene",
+                text: "Back to the Way",
+                sceneId: "waytoaud",
+              },
+            ],
+          },
+          bcahallin1: {
+            title: "To BCA Hall",
+            panorama: getResponsiveImage("bcahallin1"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 56,
+                type: "scene",
+                text: "Inside view of BCA Hall",
+                sceneId: "bcahallin2",
+              },
+              {
+                pitch: 0,
+                yaw: -158,
+                type: "scene",
+                text: "Back to front of BCA hall",
+                sceneId: "frontofbcahall",
+              },
+            ],
+          },
+          bcahallin2: {
+            title: "Main BCA Hall",
+            panorama: getResponsiveImage("bcahallin2"),
+            hotSpots: [
+              {
+                pitch: 357,
+                yaw: -118,
+                type: "scene",
+                text: "Outside view of BCA Hall",
+                sceneId: "bcahalloutother",
+              },
+              {
+                pitch: 358,
+                yaw: 120,
+                type: "scene",
+                text: "Back to BCA hall",
+                sceneId: "bcahallin1",
+              },
+            ],
+          },
+          bcastairsoutother: {
+            title: "Way to Auditorium & BCA hall",
+            panorama: getResponsiveImage("bcastairsoutother"),
+            hotSpots: [
+              {
+                pitch: 5,
+                yaw: 6,
+                type: "scene",
+                text: "Front of BCA hall",
+                sceneId: "bcahalloutother",
+              },
+              {
+                pitch: 0,
+                yaw: -66,
+                type: "scene",
+                text: "Front of BCA hall",
+                sceneId: "frontofbcahall",
+              },
+            ],
+          },
+          bcahalloutother: {
+            title: "Way to Auditorium & BCA hall",
+            panorama: getResponsiveImage("bcahalloutother"),
+            hotSpots: [
+              {
+                pitch: 355,
+                yaw: -94,
+                type: "scene",
+                text: "Back to the outside view of auditorium",
+                sceneId: "bcastairsoutother",
+              },
+              {
+                pitch: 359,
+                yaw: 0,
+                type: "scene",
+                text: "Inside the BCA hall",
+                sceneId: "bcahallin2",
+              },
+              {
+                pitch: 5,
+                yaw: -105,
+                type: "scene",
+                text: "Front of Auditorium",
+                sceneId: "frontofaud",
+              },
+            ],
+          },
+          frontofaud: {
+            title: "Way to Auditorium",
+            panorama: getResponsiveImage("frontofaud"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 0,
+                type: "scene",
+                text: "Inside view of Auditorium",
+                sceneId: "audinside",
+              },
+              {
+                pitch: 0,
+                yaw: -90,
+                type: "scene",
+                text: "Front of BCA hall",
+                sceneId: "bcahalloutother",
+              },
+            ],
+          },
+          audinside: {
+            title: "Way to Auditorium & BCA hall",
+            panorama: getResponsiveImage("audinside"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: 180,
+                type: "scene",
+                text: "Front of Auditorium",
+                sceneId: "frontofaud",
+              },
+            ],
+          },
+          midwaytomainoffice: {
+            title: "Way to Administrative Office",
+            panorama: getResponsiveImage("midwaytomainoffice"),
+            hotSpots: [
+              {
+                pitch: 2,
+                yaw: 180,
+                type: "scene",
+                text: "Back to Parking",
+                sceneId: "wayincludingparking",
+              },
+              {
+                pitch: 0,
+                yaw: 0,
+                type: "scene",
+                text: "Front of Main Office",
+                sceneId: "frontofofficegate",
+              },
+              {
+                pitch: 2,
+                yaw: -105,
+                type: "scene",
+                text: "Way to Faculty House",
+                sceneId: "waytofacultyrooms",
+              },
+              {
+                pitch: 0,
+                yaw: 15,
+                type: "scene",
+                text: "Volleyball Ground",
+                sceneId: "volleyground",
+              },
+              {
+                pitch: 0,
+                yaw: 80,
+                type: "scene",
+                text: "Basketball Court",
+                sceneId: "basketground",
+              },
+              {
+                pitch: 0,
+                yaw: 50,
+                type: "scene",
+                text: "Badminton Court",
+                sceneId: "badmintonground",
+              },
+            ],
+          },
+          basketground: {
+            title: "Basketball Court",
+            panorama: getResponsiveImage("basketground"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: -108,
+                type: "scene",
+                text: "Badminton Court",
+                sceneId: "badmintonground",
+              },
+              {
+                pitch: 1,
+                yaw: -97,
+                type: "scene",
+                text: "Front of Girls Hostel",
+                sceneId: "frontofgirlshostel",
+              },
+              {
+                pitch: 1,
+                yaw: -140,
+                type: "scene",
+                text: "Volleyball Ground",
+                sceneId: "volleyground",
+              },
+              {
+                pitch: 4,
+                yaw: 155,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "midwaytomainoffice",
+              },
+              {
+                pitch: 0,
+                yaw: -38,
+                type: "scene",
+                text: "Front of Mess",
+                sceneId: "frontofmessout",
+              },
+              {
+                pitch: 4,
+                yaw: 103,
+                type: "scene",
+                text: "Parking Area",
+                sceneId: "wayincludingparking",
+              },
+            ],
+          },
+          badmintonground: {
+            title: "Badminton Court",
+            panorama: getResponsiveImage("badmintonground"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: -95,
+                type: "scene",
+                text: "Front of Girls Hostel",
+                sceneId: "frontofgirlshostel",
+              },
+              {
+                pitch: 2,
+                yaw: -150,
+                type: "scene",
+                text: "Front of Administrative office",
+                sceneId: "frontofofficegate",
+              },
+              {
+                pitch: 2,
+                yaw: 85,
+                type: "scene",
+                text: "Basketball Ground",
+                sceneId: "basketground",
+              },
+              {
+                pitch: 4,
+                yaw: 120,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "midwaytomainoffice",
+              },
+              {
+                pitch: 1,
+                yaw: 190,
+                type: "scene",
+                text: "Volleyball Ground",
+                sceneId: "volleyground",
+              },
+              {
+                pitch: 2,
+                yaw: -28,
+                type: "scene",
+                text: "Front of Mess",
+                sceneId: "frontofmessout",
+              },
+            ],
+          },
+          volleyground: {
+            title: "Volleyball Ground",
+            panorama: getResponsiveImage("volleyground"),
+            hotSpots: [
+              {
+                pitch: 2,
+                yaw: 85,
+                type: "scene",
+                text: "Badminton Court",
+                sceneId: "badmintonground",
+              },
+              {
+                pitch: 2,
+                yaw: 130,
+                type: "scene",
+                text: "Basketball Court",
+                sceneId: "basketground",
+              },
+              {
+                pitch: 1,
+                yaw: -40,
+                type: "scene",
+                text: "Front of Administrative office",
+                sceneId: "frontofofficegate",
+              },
+              {
+                pitch: 2,
+                yaw: -176,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "midwaytomainoffice",
+              },
+              {
+                pitch: 2,
+                yaw: 48,
+                type: "scene",
+                text: "Front of Girls Hostel",
+                sceneId: "frontofgirlshostel",
+              },
+            ],
+          },
+          frontofgirlshostel: {
+            title: "Front of Girls Hostel",
+            panorama: getResponsiveImage("frontofgirlshostel"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: -85,
+                type: "scene",
+                text: "Front of Mess",
+                sceneId: "frontofmessout",
+              },
+              {
+                pitch: 0,
+                yaw: 1,
+                type: "scene",
+                text: "Badminton Court",
+                sceneId: "badmintonground",
+              },
+              {
+                pitch: 1,
+                yaw: -9,
+                type: "scene",
+                text: "Basketball Court",
+                sceneId: "basketground",
+              },
+              {
+                pitch: 1,
+                yaw: 97,
+                type: "scene",
+                text: "Front of Administrative office",
+                sceneId: "frontofofficegate",
+              },
+              {
+                pitch: 356,
+                yaw: 187,
+                type: "scene",
+                text: "Inside view of Girls Hostel",
+                sceneId: "girlshostelin",
+              },
+              {
+                pitch: 0,
+                yaw: 50,
+                type: "scene",
+                text: "Volleyball Ground",
+                sceneId: "volleyground",
+              },
+            ],
+          },
+          girlshostelin: {
+            title: "Inside view of Girls Hostel",
+            panorama: getResponsiveImage("girlshostelin"),
+            hotSpots: [
+              {
+                pitch: 2,
+                yaw: 180,
+                type: "scene",
+                text: "Front of Girls Hostel",
+                sceneId: "frontofgirlshostel",
+              },
+            ],
+          },
+          frontofofficegate: {
+            title: "Front of Administrative office",
+            panorama: getResponsiveImage("frontofofficegate"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: 174,
+                type: "scene",
+                text: "Front of Girls hostel",
+                sceneId: "frontofgirlshostel",
+              },
+              {
+                pitch: 2,
+                yaw: 15,
+                type: "scene",
+                text: "Way to Pharmacy, library, IT & FSt",
+                sceneId: "midwaytodph",
+              },
+              {
+                pitch: 2,
+                yaw: 94,
+                type: "scene",
+                text: "Front of Administrative office",
+                sceneId: "frontofways1",
+              },
+              {
+                pitch: 2,
+                yaw: -120,
+                type: "scene",
+                text: "Back to the Mid way",
+                sceneId: "midwaytomainoffice",
+              },
+              {
+                pitch: 1,
+                yaw: -142,
+                type: "scene",
+                text: "Volleyball Ground",
+                sceneId: "volleyground",
+              },
+              {
+                pitch: 1,
+                yaw: 195,
+                type: "scene",
+                text: "Badminton Court",
+                sceneId: "badmintonground",
+              },
+            ],
+          },
+          frontofways1: {
+            title: "Ways to faculty cabins",
+            panorama: getResponsiveImage("frontofways1"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: -1,
+                type: "scene",
+                text: "To mid way",
+                sceneId: "midwayofways",
+              },
+              {
+                pitch: 353,
+                yaw: 93,
+                type: "scene",
+                text: "Front of Administrative Office",
+                sceneId: "frontofofficegate",
+              },
+              {
+                pitch: 358,
+                yaw: -88,
+                type: "scene",
+                text: "Another ways to faculty cabins",
+                sceneId: "frontofways4",
+              },
+              {
+                pitch: 356,
+                yaw: -98,
+                type: "scene",
+                text: "Front of Director sir's Office",
+                sceneId: "frontofdircabin",
+              },
+            ],
+          },
+          midwayofways: {
+            title: "Mid way of cabins",
+            panorama: getResponsiveImage("midwayofways"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: -2,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "frontofways1",
+              },
+              {
+                pitch: 0,
+                yaw: 170,
+                type: "scene",
+                text: "Another way View",
+                sceneId: "frontofways2",
+              },
+            ],
+          },
+          frontofways2: {
+            title: "Another way of cabins",
+            panorama: getResponsiveImage("frontofways2"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: 0,
+                type: "scene",
+                text: "Another way View",
+                sceneId: "frontofways3",
+              },
+              {
+                pitch: 0,
+                yaw: -110,
+                type: "scene",
+                text: "Back to the mid way",
+                sceneId: "midwayofways",
+              },
+            ],
+          },
+          frontofways3: {
+            title: "Another way of cabins",
+            panorama: getResponsiveImage("frontofways3"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: 92,
+                type: "scene",
+                text: "Another way View",
+                sceneId: "frontofways4",
+              },
+              {
+                pitch: 359,
+                yaw: 0,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "frontofways2",
+              },
+            ],
+          },
+          frontofways4: {
+            title: "Another way of cabins",
+            panorama: getResponsiveImage("frontofways4"),
+            hotSpots: [
+              {
+                pitch: 2,
+                yaw: -1,
+                type: "scene",
+                text: "Another way View",
+                sceneId: "frontofways3",
+              },
+              {
+                pitch: 1,
+                yaw: 95,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "frontofways1",
+              },
+              {
+                pitch: 0,
+                yaw: 105,
+                type: "scene",
+                text: "Front of Director Sir's Office",
+                sceneId: "frontofdircabin",
+              },
+            ],
+          },
+          frontofdircabin: {
+            title: "Front of Director Sir's office",
+            panorama: getResponsiveImage("frontofdircabin"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: 70,
+                type: "scene",
+                text: "To way to cabins",
+                sceneId: "frontofways1",
+              },
+              {
+                pitch: 1,
+                yaw: -70,
+                type: "scene",
+                text: "To the way to cabins",
+                sceneId: "frontofways4",
+              },
+              {
+                pitch: 1,
+                yaw: 170,
+                type: "scene",
+                text: "Front of Administrative office",
+                sceneId: "midwaytodph",
+              },
+            ],
+          },
+          frontofmessout: {
+            title: "Front of Mess",
+            panorama: getResponsiveImage("frontofmessout"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: 1,
+                type: "scene",
+                text: "To Bcom Classes & Mess",
+                sceneId: "bcomoutgroundfloor",
+              },
+              {
+                pitch: 359,
+                yaw: 85,
+                type: "scene",
+                text: "Side View of Mess",
+                sceneId: "messoutside",
+              },
+              {
+                pitch: 1,
+                yaw: -90,
+                type: "scene",
+                text: "Front of Girls Hostel",
+                sceneId: "frontofgirlshostel",
+              },
+              {
+                pitch: 1,
+                yaw: -110,
+                type: "scene",
+                text: "Badminton Court",
+                sceneId: "badmintonground",
+              },
+              {
+                pitch: 1,
+                yaw: -145,
+                type: "scene",
+                text: "Basketball Court",
+                sceneId: "basketground",
+              },
+            ],
+          },
+          messoutside: {
+            title: "Side View of Mess",
+            panorama: getResponsiveImage("messoutside"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: -92,
+                type: "scene",
+                text: "Front of Mess",
+                sceneId: "frontofmessout",
+              },
+            ],
+          },
+          bcomoutgroundfloor: {
+            title: "Way to BCom Classes & Mess & Canteen",
+            panorama: getResponsiveImage("bcomoutgroundfloor"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: -85,
+                type: "scene",
+                text: "To Canteen",
+                sceneId: "canteen",
+              },
+              {
+                pitch: 356,
+                yaw: 48,
+                type: "scene",
+                text: "Way to BCom Classes",
+                sceneId: "bcomstairs1fl",
+              },
+              {
+                pitch: 356,
+                yaw: 182,
+                type: "scene",
+                text: "Front of Mess",
+                sceneId: "frontofmessout",
+              },
+            ],
+          },
+          canteen: {
+            title: "Canteen View",
+            panorama: getResponsiveImage("canteen"),
+            hotSpots: [
+              {
+                pitch: 357,
+                yaw: 142,
+                type: "scene",
+                text: "Back to the way to BCom classes",
+                sceneId: "bcomoutgroundfloor",
+              },
+              {
+                pitch: 359,
+                yaw: 34,
+                type: "scene",
+                text: "Way to Mess",
+                sceneId: "messin",
+              },
+            ],
+          },
+          messin: {
+            title: "Mess View",
+            panorama: getResponsiveImage("messin"),
+            hotSpots: [
+              {
+                pitch: 356,
+                yaw: 174,
+                type: "scene",
+                text: "Back to the Canteen",
+                sceneId: "canteen",
+              },
+            ],
+          },
+          bcomstairs1fl: {
+            title: "Stairs View 1st floor",
+            panorama: getResponsiveImage("bcomstairs1fl"),
+            hotSpots: [
+              {
+                pitch: 313,
+                yaw: 157,
+                type: "scene",
+                text: "Back to the way Ground floor",
+                sceneId: "bcomoutgroundfloor",
+              },
+              {
+                pitch: 357,
+                yaw: -34,
+                type: "scene",
+                text: "Mid way to classes on 1st floor",
+                sceneId: "abovemessmidway1fl",
+              },
+              {
+                pitch: 15,
+                yaw: 150,
+                type: "scene",
+                text: "Way to 2nd Floor",
+                sceneId: "bcomstairs2fl",
+              },
+            ],
+          },
+          abovemessmidway1fl: {
+            title: "Mid way to classes 1st floor",
+            panorama: getResponsiveImage("abovemessmidway1fl"),
+            hotSpots: [
+              {
+                pitch: 356,
+                yaw: 78,
+                type: "scene",
+                text: "Way to FSt class",
+                sceneId: "abovemessbcomright1fl",
+              },
+              {
+                pitch: 355,
+                yaw: -95,
+                type: "scene",
+                text: "Way to FSt other class",
+                sceneId: "abovemessbcomleft1fl",
+              },
+              {
+                pitch: 352,
+                yaw: 193,
+                type: "scene",
+                text: "Back to the stairs",
+                sceneId: "bcomstairs1fl",
+              },
+            ],
+          },
+          abovemessbcomright1fl: {
+            title: "FSt Class View",
+            panorama: getResponsiveImage("abovemessbcomright1fl"),
+            hotSpots: [
+              {
+                pitch: 355,
+                yaw: -132,
+                type: "scene",
+                text: "Back to Mid way",
+                sceneId: "abovemessmidway1fl",
+              },
+            ],
+          },
+          abovemessbcomleft1fl: {
+            title: "FSt Class View",
+            panorama: getResponsiveImage("abovemessbcomleft1fl"),
+            hotSpots: [
+              {
+                pitch: 356,
+                yaw: 145,
+                type: "scene",
+                text: "Back to the Mid way",
+                sceneId: "abovemessmidway1fl",
+              },
+            ],
+          },
+          bcomstairs2fl: {
+            title: "Stairs View 2nd floor",
+            panorama: getResponsiveImage("bcomstairs2fl"),
+            hotSpots: [
+              {
+                pitch: 316,
+                yaw: 157,
+                type: "scene",
+                text: "Back to the way 1st floor",
+                sceneId: "bcomstairs1fl",
+              },
+              {
+                pitch: 357,
+                yaw: -33,
+                type: "scene",
+                text: "Mid way to classes on 2nd floor",
+                sceneId: "midwaybcom2fl",
+              },
+              {
+                pitch: 357,
+                yaw: -70,
+                type: "scene",
+                text: "Way to BCom Class",
+                sceneId: "abovemessbcomstr2fl",
+              },
+              {
+                pitch: 357,
+                yaw: -99,
+                type: "scene",
+                text: "Way to BA Class",
+                sceneId: "waytoclassesleft2fl",
+              },
+            ],
+          },
+          abovemessbcomstr2fl: {
+            title: "FSt Class View",
+            panorama: getResponsiveImage("abovemessbcomstr2fl"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: 100,
+                type: "scene",
+                text: "Back to the Mid way",
+                sceneId: "midwaybcom2fl",
+              },
+              {
+                pitch: 358,
+                yaw: 115,
+                type: "scene",
+                text: "Way to BA Classes",
+                sceneId: "waytoclassesleft2fl",
+              },
+            ],
+          },
+          waytoclassesleft2fl: {
+            title: "Mid Way to BA Classes",
+            panorama: getResponsiveImage("waytoclassesleft2fl"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: 178,
+                type: "scene",
+                text: "Back to the Mid way",
+                sceneId: "midwaybcom2fl",
+              },
+              {
+                pitch: 358,
+                yaw: 2,
+                type: "scene",
+                text: "Way to BA Classes",
+                sceneId: "frontofbahall2fl",
+              },
+            ],
+          },
+          frontofbahall2fl: {
+            title: "Front to BA Class",
+            panorama: getResponsiveImage("frontofbahall2fl"),
+            hotSpots: [
+              {
+                pitch: 356,
+                yaw: 42,
+                type: "scene",
+                text: "Back to the Mid way",
+                sceneId: "waytoclassesleft2fl",
+              },
+              {
+                pitch: 358,
+                yaw: 3,
+                type: "scene",
+                text: "Entrance of BA Class",
+                sceneId: "baclassleftin2fl",
+              },
+            ],
+          },
+          baclassleftin2fl: {
+            title: "BA Class",
+            panorama: getResponsiveImage("baclassleftin2fl"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: 40,
+                type: "scene",
+                text: "Back to the Entrance",
+                sceneId: "frontofbahall2fl",
+              },
+            ],
+          },
+          midwaybcom2fl: {
+            title: "Mid way to other classes",
+            panorama: getResponsiveImage("abovemessmidway2fl"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: 0,
+                type: "scene",
+                text: "Side Way to classes",
+                sceneId: "rightsidewaybcom2fl",
+              },
+              {
+                pitch: 357,
+                yaw: 177,
+                type: "scene",
+                text: "Back to the stairs",
+                sceneId: "bcomstairs2fl",
+              },
+              {
+                pitch: 357,
+                yaw: -160,
+                type: "scene",
+                text: "BCom Class",
+                sceneId: "abovemessbcomstr2fl",
+              },
+              {
+                pitch: 357,
+                yaw: 185,
+                type: "scene",
+                text: "Way to BA Class",
+                sceneId: "waytoclassesleft2fl",
+              },
+            ],
+          },
+          rightsidewaybcom2fl: {
+            title: "Way to other classes",
+            panorama: getResponsiveImage("rightsidewaybcom2fl"),
+            hotSpots: [
+              {
+                pitch: 357,
+                yaw: -3,
+                type: "scene",
+                text: "Way to BCA class",
+                sceneId: "waybcaright2fl",
+              },
+              {
+                pitch: 354,
+                yaw: -98,
+                type: "scene",
+                text: "Back to the Mid way",
+                sceneId: "midwaybcom2fl",
+              },
+              {
+                pitch: 357,
+                yaw: -50,
+                type: "scene",
+                text: "BA Class",
+                sceneId: "basideclassright2fl",
+              },
+            ],
+          },
+          basideclassright2fl: {
+            title: "BA Class",
+            panorama: getResponsiveImage("basideclassright2fl"),
+            hotSpots: [
+              {
+                pitch: 356,
+                yaw: 33,
+                type: "scene",
+                text: "Back to the Entrance",
+                sceneId: "rightsidewaybcom2fl",
+              },
+            ],
+          },
+          waybcaright2fl: {
+            title: "Way to BCA Class",
+            panorama: getResponsiveImage("waybcaright2fl"),
+            hotSpots: [
+              {
+                pitch: 356,
+                yaw: -110,
+                type: "scene",
+                text: "Entrance of BCA Class",
+                sceneId: "bcaclassrightin2fl",
+              },
+              {
+                pitch: 351,
+                yaw: 174,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "rightsidewaybcom2fl",
+              },
+            ],
+          },
+          bcaclassrightin2fl: {
+            title: "BCA Class",
+            panorama: getResponsiveImage("bcaclassrightin2fl"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: -40,
+                type: "scene",
+                text: "Back to the Entrance",
+                sceneId: "waybcaright2fl",
+              },
+            ],
+          },
+          midwaytodph: {
+            title: "Way to Pharmacy, IT, Library",
+            panorama: getResponsiveImage("midwaytodph"),
+            hotSpots: [
+              {
+                pitch: 2,
+                yaw: -75,
+                type: "scene",
+                text: "Cricket Ground",
+                sceneId: "cricketground",
+              },
+              {
+                pitch: 3,
+                yaw: 2,
+                type: "scene",
+                text: "Way to Pharmacy, IT, Library",
+                sceneId: "othermidwaytodph",
+              },
+              {
+                pitch: 3,
+                yaw: 115,
+                type: "scene",
+                text: "Front of Director Sir's Cabin",
+                sceneId: "frontofdircabin",
+              },
+              {
+                pitch: 2,
+                yaw: 156,
+                type: "scene",
+                text: "Front of Administrative Office",
+                sceneId: "frontofofficegate",
+              },
+            ],
+          },
+          cricketground: {
+            title: "Cricket Ground",
+            panorama: getResponsiveImage("cricketground"),
+            hotSpots: [
+              {
+                pitch: 5,
+                yaw: 108,
+                type: "scene",
+                text: "Front of Auditorium",
+                sceneId: "bcastairsoutother",
+              },
+              {
+                pitch: 4,
+                yaw: -87,
+                type: "scene",
+                text: "Other Way to Pharmacy, IT, Library",
+                sceneId: "othermidwaytodph",
+              },
+              {
+                pitch: 4,
+                yaw: -20,
+                type: "scene",
+                text: "Mid Way to Pharmacy, IT, Library",
+                sceneId: "midwaytodph",
+              },
+              {
+                pitch: 5,
+                yaw: 6,
+                type: "scene",
+                text: "Front of Administrative Office",
+                sceneId: "frontofofficegate",
+              },
+            ],
+          },
+          othermidwaytodph: {
+            title: "Other Way to Pharmacy, IT, Library",
+            panorama: getResponsiveImage("othermidwaytodph"),
+            hotSpots: [
+              {
+                pitch: 3,
+                yaw: -162,
+                type: "scene",
+                text: "Cricket Ground",
+                sceneId: "cricketground",
+              },
+              {
+                pitch: 3,
+                yaw: 160,
+                type: "scene",
+                text: "Back to the Mid Way",
+                sceneId: "midwaytodph",
+              },
+              {
+                pitch: 0,
+                yaw: -2,
+                type: "scene",
+                text: "Front of Pharmacy Building",
+                sceneId: "frontofdphbuild",
+              },
+            ],
+          },
+          frontofdphbuild: {
+            title: "Front of Pharmacy Building",
+            panorama: getResponsiveImage("frontofdphbuild"),
+            hotSpots: [
+              {
+                pitch: 1,
+                yaw: 148,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "othermidwaytodph",
+              },
+              {
+                pitch: 4,
+                yaw: 0,
+                type: "scene",
+                text: "Way to all Classes",
+                sceneId: "waytoclassesdph",
+              },
+              {
+                pitch: 4,
+                yaw: 25,
+                type: "scene",
+                text: "Front of Pharmacy & Library Entrance",
+                sceneId: "frontwaytoclassesdph",
+              },
+            ],
+          },
+          waytoclassesdph: {
+            title: "Way to all Classes",
+            panorama: getResponsiveImage("waytoclassesdph"),
+            hotSpots: [
+              {
+                pitch: 356,
+                yaw: 180,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "frontofdphbuild",
+              },
+              {
+                pitch: 358,
+                yaw: 89,
+                type: "scene",
+                text: "Way to Ph. Classes & Library",
+                sceneId: "frontwaytoclassesdph",
+              },
+              {
+                pitch: 0,
+                yaw: -87,
+                type: "scene",
+                text: "Way to BScIT class & FSt Lab",
+                sceneId: "waytobscithall",
+              },
+              {
+                pitch: 359,
+                yaw: 166,
+                type: "scene",
+                text: "Back to the mid way",
+                sceneId: "othermidwaytodph",
+              },
+            ],
+          },
+          frontwaytoclassesdph: {
+            title: "Way to Ph. Classes & Library",
+            panorama: getResponsiveImage("frontwaytoclassesdph"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: -139,
+                type: "scene",
+                text: "Back to the way",
+                sceneId: "frontofdphbuild",
+              },
+              {
+                pitch: 357,
+                yaw: -86,
+                type: "scene",
+                text: "Way to all Classes",
+                sceneId: "waytoclassesdph",
+              },
+              {
+                pitch: 0,
+                yaw: 0,
+                type: "scene",
+                text: "Outside the Library & Ph Classes",
+                sceneId: "libraryout",
+              },
+              {
+                pitch: 2,
+                yaw: 186,
+                type: "scene",
+                text: "Back to the mid way",
+                sceneId: "othermidwaytodph",
+              },
+            ],
+          },
+          libraryout: {
+            title: "Outside the Library & Ph classes",
+            panorama: getResponsiveImage("libraryout"),
+            hotSpots: [
+              {
+                pitch: 10,
+                yaw: -90,
+                type: "scene",
+                text: "To other Ph classes and Chem. Lab",
+                sceneId: "dphabovestairs",
+              },
+              {
+                pitch: 359,
+                yaw: 140,
+                type: "scene",
+                text: "Back to the Way",
+                sceneId: "frontwaytoclassesdph",
+              },
+              {
+                pitch: 358,
+                yaw: -35,
+                type: "scene",
+                text: "Entrance of the Library",
+                sceneId: "libraryin",
+              },
+              {
+                pitch: 359,
+                yaw: 34,
+                type: "scene",
+                text: "Way to other Ph class",
+                sceneId: "frontofdphclass2",
+              },
+              {
+                pitch: 357,
+                yaw: 110,
+                type: "scene",
+                text: "Pharmacy Class",
+                sceneId: "dphclass1",
+              },
+            ],
+          },
+          dphclass1: {
+            title: "Pharmacy Class",
+            panorama: getResponsiveImage("dphclass1"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: 49,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "libraryout",
+              },
+            ],
+          },
+          libraryin: {
+            title: "Library Inside View",
+            panorama: getResponsiveImage("libraryin"),
+            hotSpots: [
+              {
+                pitch: 358,
+                yaw: 185,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "libraryout",
+              },
+            ],
+          },
+          frontofdphclass2: {
+            title: "Front of Other Pharmacy Class",
+            panorama: getResponsiveImage("frontofdphclass2"),
+            hotSpots: [
+              {
+                pitch: 0,
+                yaw: -7,
+                type: "scene",
+                text: "To Other Pharmacy Class",
+                sceneId: "dphclass2",
+              },
+              {
+                pitch: 0,
+                yaw: 99,
+                type: "scene",
+                text: "To Pharmacy Class",
+                sceneId: "dphclass1",
+              },
+              {
+                pitch: 0,
+                yaw: 120,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "libraryout",
+              },
+            ],
+          },
+          dphclass2: {
+            title: "Other Pharmacy Class",
+            panorama: getResponsiveImage("dphclass2"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: 93,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "frontofdphclass2",
+              },
+            ],
+          },
+          dphabovestairs: {
+            title: "Front of Other Pharmacy Class",
+            panorama: getResponsiveImage("dphabovestairs"),
+            hotSpots: [
+              {
+                pitch: 357,
+                yaw: -128,
+                type: "scene",
+                text: "To Pharmacy Faculty Cabin",
+                sceneId: "dphfacultycabin",
+              },
+              {
+                pitch: 358,
+                yaw: -162,
+                type: "scene",
+                text: "Side View",
+                sceneId: "dphabovestairsside",
+              },
+              {
+                pitch: 358,
+                yaw: -38,
+                type: "scene",
+                text: "Chemistry Lab",
+                sceneId: "dphchemlab",
+              },
+              {
+                pitch: 340,
+                yaw: 123,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "libraryout",
+              },
+            ],
+          },
+          dphfacultycabin: {
+            title: "Pharmacy's Faculty Cabin",
+            panorama: getResponsiveImage("dphfacultycabin"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: 53,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "dphabovestairs",
+              },
+            ],
+          },
+          dphchemlab: {
+            title: "Pharmacy Chemistry Lab",
+            panorama: getResponsiveImage("dphchemlab"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: 93,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "dphabovestairs",
+              },
+            ],
+          },
+          dphabovestairsside: {
+            title: "Side View",
+            panorama: getResponsiveImage("dphabovestairsside"),
+            hotSpots: [
+              {
+                pitch: 357,
+                yaw: 180,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "dphabovestairs",
+              },
+            ],
+          },
+          waytobscithall: {
+            title: "Hall to enter BScIT class & FSt Lab",
+            panorama: getResponsiveImage("waytobscithall"),
+            hotSpots: [
+              {
+                pitch: 359,
+                yaw: -10,
+                type: "scene",
+                text: "To IT Class Or Lab",
+                sceneId: "bscitclassin",
+              },
+              {
+                pitch: 359,
+                yaw: -115,
+                type: "scene",
+                text: "To FSt Lab",
+                sceneId: "fstlab",
+              },
+              {
+                pitch: 358,
+                yaw: -94,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "waytoclassesdph",
+              },
+            ],
+          },
+          bscitclassin: {
+            title: "BScIT Class or IT Lab",
+            panorama: getResponsiveImage("bscitclassin"),
+            hotSpots: [
+              {
+                pitch: 357,
+                yaw: 20,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "waytobscithall",
+              },
+            ],
+          },
+          fstlab: {
+            title: "FSt Lab",
+            panorama: getResponsiveImage("fstlab"),
+            hotSpots: [
+              {
+                pitch: 357,
+                yaw: 180,
+                type: "scene",
+                text: "Back to Outside",
+                sceneId: "waytobscithall",
+              },
+            ],
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
