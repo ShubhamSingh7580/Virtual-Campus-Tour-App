@@ -64,7 +64,405 @@
 
       function getResponsiveImage(name) {
         const isMobile = window.innerWidth <= 768;
-        return isMobile ? `images/${name}(2).jpg` : `images/${name}.jpg`;
+        const imageLinks = {
+          maingateout: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1HIyrjUFgYseqeeVSBkL5GbTcaRSKXQGJ",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1jRckmwdqyBJFyV6ssBV8k7eO4nFz9KpC",
+          },
+          maingatein: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1TPXOs1CaNJTHRV_DUn0-dqVjQt1TUp3V",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1sOEZiJt-zEqD6iimg83CXb7lYo3RJvAI",
+          },
+          waytoboyshostel: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1-aREC17gnyPjv8CNwo730Iw7v13UubeU",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=16zE2Oq_Sy1TjPfegKj71p_GeC0VfUkAb",
+          },
+          boyshostelout: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1x7ers1ONxkjcEnSUVsrXboYPl4TJit2w",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1Kow1pR_ftFWP-GlEWLb3_PyxFpn_LSkV",
+          },
+          boyshostelside: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1Oin58Av0TQoQVryq1yPAeMj2VauMBfgK",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=11Op5nTqTu0XfZvNSFy3fJQnIkBcR2bI9",
+          },
+          avlatreebesideaud: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1VNlhkYgu_y2M1FLxv7UR4x6Tv6hw_G5Z",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1gTUzAyEsS5R9dgoxSka4Cv3CwAIfssIg",
+          },
+          parkingside: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=12P4Ao965H_FnmsLgiqFVo4x3peJrU_iX",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=19xDZ3k2ChHg0XW1wdsSLZa0k1Djq0jMk",
+          },
+          waytofacultyrooms: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1kA-WzPJTSaJY8Vy-Ud9GE4lwmgvxGfem",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1diksQsrYcW9cey6A1heLFQ3rqbL8v3OK",
+          },
+          facultyrooms: {
+            desktop: "",
+            mobile: "",
+          },
+          waytoaud: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1E4z1HKZCs5m8H9wxm1QujqcBDWMw5-e1",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1sjKnCc1GIg3QaiFimXLeS4TJrUkS_Loa",
+          },
+          frontofbcahall: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1yK1PwYZbOY2d-E2KrZhCc7LJ28xPBDdt",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1ZIUSbj9VTYU40UUGONn93NcxDqZpljz6",
+          },
+          bcahallin1: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1pEv58ecPhCslgLuSRPc45KzxSfxEh7G6",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1P5EYEjJiar1E9OuUs1D24WC5WROhADDQ",
+          },
+          bcahallin2: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1lvCBveN2_z4bayCL2RFMYEXOYp2v6mtO",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1j_2IFu6f0PassWdCQj_dNwrZuqGtVM-F",
+          },
+          bcastairsoutother: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1uPWLd4e6IPckzzTu-6hwKu6GSGmNMbsJ",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1ch47TAH2vqb3KU1bzroBmgkZ7vLgHmxe",
+          },
+          bcahalloutother: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1ZnEADzwkh6lcw5x9_Zpkmh2wuhUaZlq2",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=10jI9Vd-0EbFLOndO1JGtc8KmytZ2yuq0",
+          },
+          frontofaud: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1Ax9U952lBK8O604Gp3VC4btVVUsYRB_F",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=162ZzSX4OiQ6OEcpr2eHFFqJ3qeoZcDVI",
+          },
+          audinside: {
+            desktop: "",
+            mobile: "",
+          },
+          midwaytomainoffice: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1YzwEmtWgY1IenJmged79cxH_VWNIrLiL",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1Q7FHjsVPDpD7YJWVIgRRaN1doYlqLaIr",
+          },
+          basketground: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1hQsFMte8QIukfjF-r1f-ALNVLM93MD0R",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1G2l2mIsy5vs5HWYpYjRjyE88N_cGziDO",
+          },
+          volleyground: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1Kr27SeD5eq7iNsBSzfkFvu_ypTuZHcS7",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1GTZi7kixtZpVFM58fobBWFnC9GWsgzMS",
+          },
+          badmintonground: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1aX_dNJPzxK0fy9CmV8CP52E7TbzeVvTQ",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1ASdSLOKYCEgBWxLEMmfB5y2GwIx2WvKK",
+          },
+          frontofmessout: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1sT54mLVLLw-XFN_ROqqryDb92oj4Em6v",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1MMCD22BCgMPQZ35zwhITLntt9g7NTflr",
+          },
+          frontofgirlshostel: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1XvnljHPQ1511fA5McTPgMB2MX7p5mKzb",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1vmbZdpL2ZBrtC0tFqr8_yy4zRQnil2zH",
+          },
+          girlshostelin: {
+            desktop: "",
+            mobile: "",
+          },
+          bcomoutgroundfloor: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=11Odcb2jTrZbIzTTMXOxnz6HtrG5Nu0I-",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1EEG0q3nnSw32UeGUhHATpxX4hhFQETH0",
+          },
+          messoutside: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1p28JBc8QWyfn6kz3yP4sxTuQdN_Apg2S",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=12eXBBg8ZLESQ1ca_NAvFvmiGTWAYu3ho",
+          },
+          canteen: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=103xMA6GVoE_7tSL4JYOqKQGePRgxkUbi",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1hIMiqPz95aYWlg9LYCkp0N6DEfCuS578",
+          },
+          messin: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1TuOOWSHp-qA9d4jUEaTBDkjWawQwZEjv",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1y2snEP710XP2MFwFJsqpcuzNBXeKLT-_",
+          },
+          bcomstairs1fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1rByA_7p6L3Sl6B0IGLxPs2ua3SZ1ukaK",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1CoeIJWKABe1RVi_Lg1l15LTTdHAcKZIz",
+          },
+          abovemessmidway1fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=16CNqVfFMXavoL41syz34WTS5kDP5d1L3",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1s4kD34mJrS1RDNRMSCsJT60ggpG7IaDT",
+          },
+          abovemessbcomright1fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1knkYRjALOxK75vu1_HeP_taRLz5aO4fH",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1q6xF5ekbAkDwYP8nOrJMckSX_3fHAOrv",
+          },
+          abovemessbcomleft1fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1rfZ_CoGJHFyjZKRN1nD63nXA0ekkCvCl",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1OZiGhl-bZK01_HrJGvgE44Ww_xdEXnyK",
+          },
+          bcomstairs2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1VL8sLd0kF5ad7VAiH9GglYWpDH_slAdT",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1wpwHihkV-6TH2Q_G118Sb6mvIn1A4om_",
+          },
+          abovemessmidway2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1r9JWlWT79udNAU6WaTTGL6S3Coc-iqhm",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1TL9fVp5aD2kWUQskEhq-KJxtyeNsDsjj",
+          },
+          abovemessbcomstr2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1S-E7IbdWyFQD3HR14Rxmv9iHYiAG_koX",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=11xxnVAPcyuDAJlhcIRFh4lPtk2WFjxwf",
+          },
+          waytoclassesleft2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1jeduxgKJ-nXyS8CjFiHsuDPZqYWjpnHR",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1p5u8AAxitro71gAjdVruJ_Z5I_Iel_vr",
+          },
+          rightsidewaybcom2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1dGLKe6indtJZuIeU0TFTv68IlkO7p0A4",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1jaZejFqqjy5RR1Cs5BPNd-2ffO_J8_AO",
+          },
+          waybcaright2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1p3O0MO0MDFSzzUcYg_DOHKlaDl_8PhGr",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1B69wrDOGGHW1yuTJTLHiCkkrnr3WY48A",
+          },
+          baclassleftin2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1-JPbZuK-uutxASDQp-xbz-ruV8Cfr6lY",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1ADCXTIiwH38O-QRRAXdaWuUktFZxaDbd",
+          },
+          frontofbahall2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1Mf7Yt3BQP5YB4jAHX2h5eLioLJZmuZim",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1RJNo5LDXiVXmItHUg-HTukYpmQjpo5Wk",
+          },
+          bcaclassrightin2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1ZyHzwZ_WNaUTohahBFEmUWt9LitAo9qi",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1-LupONzn89rfbb-0H41KBiT9-8MfCPHg",
+          },
+          basideclassright2fl: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1Mx6R5oRFtWFHHlatMwvnKqhLF3zmfpjh",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1LM5uITDP3fhG_GmzJxpG5GZqTlXrV38g",
+          },
+          frontofofficegate: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1VQhqG4pvri3EUYvJyD7LMroUNKSQ55Rm",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1EE0u1l1rMCfLXz7vxtGFkpc5DUKBFq-R",
+          },
+          frontofways1: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1ptgjBUjyBJkWnI99j405Nr9jyKKpHhPi",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1eHxZWrnGuwdagktWtDvqy4t46rt7SPYZ",
+          },
+          frontofways2: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1lqwqymRuKobd1hQrRXMn7h4fcmERLwq-",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=16HMGfnIh1lookxn4VeKX6hmbUrj3mWr4",
+          },
+          frontofways3: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1si3vPpAJGjMWa0ZlMXZKbmgHrUX4zuj3",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1EfM-uw-pMwV1eHlurNZZMN0In-oSVPTm",
+          },
+          frontofways4: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1uBnJJGsciVagCy8jZVxH_p7II9MC4SY0",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1D3IFXJvjo22Mq_C6EDPM7s8tZTCdqJ-k",
+          },
+          midwayofways: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1jvrqwaeelSHl7g3wE1US91aqaaN3k42J",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1DDMc-l2j60LmsUNuW1AVOZ6YJFDarDx_",
+          },
+          frontofdircabin: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1Fm_nYU5I-6LqNqQ0A6AwE1SEXHK6VYM-",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=19omUmAGW-z8GOBmtfHfmX5NCtZpj7g4l",
+          },
+          midwaytodph: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1zm5YvMOuAmb_8kgZsImPitWEbaQNB1Gr",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1moLS5XA75pOGZhDrOj9knux4jLCygSfN",
+          },
+          othermidwaytodph: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1WtUkTuPYyyfutLmGM4R3rzBdmrdD1ZIa",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1FPu8WD_Sw84_7jfbctoaMwecRG_fM_Gc",
+          },
+          cricketground: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1EnOIO0AJy8-73QBpc-sNNdQ0kLvNMdoT",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1gZwAVfzdv2n4cUcENuxYdg5BAcYJMUnd",
+          },
+          frontofdphbuild: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1rZeORWx7kpUutc1Y0W_2VWpy3y7hbMww",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1E8cT03AyhYKx4yGEwtNWT3tdQT1lJSj9",
+          },
+          waytoclassesdph: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1S_PghTMB6iX6hrhmAYxGLOW4fJbrgw7z",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1AvXuTXE4KAUod5prjZk-QwYJcJaqGfnF",
+          },
+          frontwaytoclassesdph: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1ap-TXoe8zjcdrxvOYpIM-v-FJ4X0IiYb",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=15tYfeClkUxQ8E63CdcuATZfsehq7hg_K",
+          },
+          libraryout: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1KM27qI_eJV6xFAwoyvglxntIyojLeAam",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1pVGG4t4IJvS6Pb81qOjcGW21QaG7cdLq",
+          },
+          libraryin: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=13WH6--0mlbUcqpt3qDzl3Nb5SInDkv23",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1z78-oslymEjUwE3xOl0KeA2Aqp8Ws-kv",
+          },
+          dphclass1: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=15KNXobO529OO_pPiLF21kaMjisrJK-HM",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1yJa6OYvYol93QvXxejI978AFq5i2OBRV",
+          },
+          dphclass2: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1fTWyOC4L9EvuqJgU_c9dG1nbHaI0N0es",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1wkFILySTcw95U8C4zBybWqkPp0i1vF_q",
+          },
+          dphabovestairs: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1YMjXMUurV83JgXrKD4pHYPdsIhnRfd7a",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=14ruxjGHBOz2snGbK48jNBA_QWe6zh8ko",
+          },
+          dphchemlab: {
+            desktop: "",
+            mobile: "",
+          },
+          dphabovestairsside: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1MyZfwmiUPQaYP0AKHlhCyetsRstsaNMW",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1NDs2PbASwnlqtLKMX9NU45GwRUMuu8VB",
+          },
+          frontofdphclass2: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1aT5_PyISdSXebgbY07Ns9xVd2tmeuBDq",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1vAqfBdIkDEsFaOE0ZfTOA4Mx4wi2iPod",
+          },
+          waytobscithall: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1rBfBW4LQjpXQVLI2KNlPFdlhH21zhCmV",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1F_fmkVqj-Z868yC9vqDJJMUFLxZ-9N5r",
+          },
+          dphfacultycabin: {
+            desktop:
+              "https://drive.google.com/uc?export=download&id=1WfL-AVuH8t206Z4FD2NiU2v-8QU-KHa1",
+            mobile:
+              "https://drive.google.com/uc?export=download&id=1iwUzF7UW0pllLsSj7ET_hsbPGfOdAAts",
+          },
+          bscitclassin: {
+            desktop: "",
+            mobile: "",
+          },
+          fstlab: {
+            desktop: "",
+            mobile: "",
+          },
+        };
+
+        const links = imageLinks[name];
+        if (!links) {
+          console.warn(`No image links found for this scene '${name}'`);
+          return "";
+        }
+        return isMobile ? links.mobile : links.desktop;
       }
 
       const params = new URLSearchParams(window.location.search);
